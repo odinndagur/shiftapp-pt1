@@ -1,10 +1,38 @@
 <html>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   </head>
    <body>
+      <div class="container">
+      <ul>
+         {%for file in inputfiles%}
+         <li>
+            <span>{{file}}</span>
+            <span><a href="{{url_for('download',file = file)}}">download</a></span>
+            <a href="{{url_for('camelot', file = file)}}">
+               {{file}}
+            </a>
+         </li>
+         {%endfor%}
+
+         {%for file in outputfiles%}
+         <li>
+            <span>{{file}}</span>
+            <span><a href="/download/{{file}}">download</a></span>
+
+            <a href="{{url_for('csv', file = file)}}">
+               select {{file}}
+            </a>
+         </li>
+         {%endfor%}
+      </ul>
+      <h1>{{csv}}</h1>
       <form action = "/uploader" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form>   
    </form>   
+</div>
    </body>
 </html>

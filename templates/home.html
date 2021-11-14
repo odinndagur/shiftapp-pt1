@@ -1,0 +1,83 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='homestyle.css') }}">
+   </head>
+   <body>
+      <div class="container">
+            <div class="files">
+                <ul>
+                    {%for file in inputfiles%}
+                    <li>
+                        <span><a href="{{url_for('download',file = file)}}">download</a></span>
+                        <a href="{{url_for('camelot', file = file)}}">
+                        {{file}}
+                        </a>
+                    </li>
+                    {%endfor%}
+
+                    {%for file in outputfiles%}
+                    <li>
+                        <span>{{file}}</span>
+                        <span><a href="/download/{{file}}">download</a></span>
+
+                        <a href="{{url_for('csv', file = file)}}">
+                        select
+                        </a>
+                    </li>
+                    {%endfor%}
+                </ul>
+
+                <form action = "/uploader" method = "POST" 
+                enctype = "multipart/form-data">
+                <input type = "file" name = "file" />
+                <input type = "submit"/>
+            </form>   
+            </div>
+
+            <div class="ppl">
+                <ul>
+                {%for person in ppl%}
+                    <li>
+                        <a href="{{url_for('home',file=file,person=person)}}">{{person}}</a>
+                    </li>
+                {%endfor%}
+                </ul>
+            </div>
+
+            <div class="shifts">
+                <h1>{{person}}</h1>
+                <ul>
+                    {%for shift in shifts%}
+                        <li>
+                            {{shift['date']}} {{shift['time']}}
+                        </li>
+                    {%endfor%}
+                </ul>
+            </div>
+            <div class="days">
+                <ul>
+                    {%for day in days%}
+                        <li>
+                            <a href="{{url_for('home',file=file,person=person,day = day)}}">{{day}}</a>
+                        </li>
+                    {%endfor%}
+                </ul>
+            </div>
+            {%if dayshifts%} 
+            <div class="day">
+                <h3>{{dayshifts['date']}}</h3>
+                {%for key in dayshifts['shifts'].keys()%}
+                <ul>
+                   <b>{{key}}</b>
+                   {%for shift in dayshifts['shifts'][key]%}
+                 <li>
+                    {{shift}}
+                </li>
+                   {%endfor%}
+             </ul><br/>
+                {%endfor%}
+            </div>
+            {%endif%}
+        </div>
+   </body>
+</html>

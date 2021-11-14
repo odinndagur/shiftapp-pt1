@@ -1,0 +1,21 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='homestyle.css') }}">
+   </head>
+   <body>
+      <div class="daycontainer">
+         <!-- {{shifts}} -->
+         {{shifts['date']}}
+         {%for key in shifts['shifts'].keys()%}
+         <ul>
+            {{key}}
+            {%for shift in shifts['shifts'][key]%}
+          <li>
+             {{shift}}
+         </li>
+            {%endfor%}
+      </ul><br/>
+         {%endfor%}
+    </div>
+   </body>
+</html>

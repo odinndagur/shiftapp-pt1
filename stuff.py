@@ -1,5 +1,4 @@
 import pandas as pd
-from app import app
 
 buffer = 0.2
 
@@ -37,7 +36,7 @@ def tablestocellinfo(tables):
     return cellinfo
 
 def cleanuptables(tables,docs):
-    out = app.config['UPLOAD_FOLDER'] + '/out/'
+    # out = app.config['UPLOAD_FOLDER'] + '/out/'
     for i in range(0,tables.n, 2):
         df = tables[i].df #even
         df2 = tables[i+1].df #odd

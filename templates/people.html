@@ -1,0 +1,29 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   </head>
+   <body>
+      <div class="shifts" style="float:right; max-width:400px;text-align:left">
+         <h1>{{person}}</h1>
+         <ul>
+           {%for shift in shifts%} 
+           <li>
+           {{shift['date']}} {{shift['time']}} 
+         </li>
+           {%endfor%}
+         </ul>
+            </div>
+      <div class="container" style="float:left">
+      <ul>
+         {%for person in people%}
+         <li>
+            <a href="{{url_for('people',person=person,file = file)}}">
+               {{person}}
+            </a>
+         </li>
+         {%endfor%}
+      </ul>
+   </div>
+
+   </body>
+</html>
