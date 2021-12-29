@@ -249,7 +249,8 @@ def camelot():
     files = {'pdffile': temp_pdf.read(),
             'jsonfile': open(outputpath + 'celldata1.json','rb')
             }
-    r = requests.post('http://127.0.0.1:5001/uploader', files = files)
+    #r = requests.post('http://127.0.0.1:5001/uploader', files = files)
+    r = requests.post('https://shiftapp-pt2.herokuapp.com/uploader', files = files)
     print(r)
 
     if r.ok:
