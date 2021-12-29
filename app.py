@@ -79,12 +79,14 @@ def camelprocess(file):
     return first
 
 @app.route("/")
+@cross_origin()
 def index():
     files_in_dir = os.listdir(os.path.join(app.config['UPLOAD_FOLDER'],''))#,'out/'))
     outputfiles = os.listdir(os.path.join(app.config['UPLOAD_FOLDER'],'out/'))
     return render_template("index.html", inputfiles = files_in_dir, outputfiles = outputfiles)
 
 @app.route("/home")
+@cross_origin()
 def home():
     files_in_dir = os.listdir(os.path.join(app.config['UPLOAD_FOLDER'],''))#,'out/'))
     outputfiles = os.listdir(os.path.join(app.config['UPLOAD_FOLDER'],'out/'))
@@ -145,6 +147,7 @@ def home():
     return render_template("home.html", inputfiles = files_in_dir, outputfiles = outputfiles, ppl = ppl, shifts = shifts, person = person,days = days, dayshifts = data)
 
 @app.route("/<file>")
+@cross_origin()
 def indexfile(file):
     if file:
         try:
@@ -154,6 +157,7 @@ def indexfile(file):
         return file
 
 @app.route('/base')
+@cross_origin()
 def base():
     return render_template('basetest.html')
 
@@ -166,6 +170,7 @@ def write():
     return "done"
 
 @app.route("/read")
+@cross_origin()
 def read():
     file = open(app.config["UPLOAD_FOLDER"] + "/text.txt", "r")
     content = file.read()
@@ -183,6 +188,7 @@ def read():
 
 
 @app.route('/uploader', methods = ['GET', 'POST'])
+@cross_origin()
 def upload_file():
    if request.method == 'POST':
         f = request.files['file']
@@ -193,6 +199,7 @@ def upload_file():
 
 
 @app.route('/get', methods=['POST','GET'])
+@cross_origin()
 def uploadimages():
     file_names=[]
     curr_path=os.getcwd()
@@ -214,6 +221,7 @@ def uploadimages():
         abort(404)             
 
 @app.route("/camelot", methods=['POST','GET'])
+@cross_origin()
 def camelot():
     file = request.args.get('file')
     if not file:
@@ -387,6 +395,7 @@ def days():
     return render_template("days.html", days = df)
 
 @app.route("/day/<day>")
+@cross_origin()
 def day(day):
     file = request.args.get('file')
     csv = pd.read_csv(outputpath + file,index_col=1)
@@ -417,6 +426,7 @@ def day(day):
     return render_template("day.html", file = file, shifts = data)
 
 @app.route("/people")
+@cross_origin()
 def people():
     file = request.args.get('file')
     person = request.args.get('person')
@@ -442,6 +452,7 @@ def people():
 
 
 @app.route("/csv/<file>")
+@cross_origin()
 def csv(file):
     # file = os.path.join(app.config['UPLOAD_FOLDER'],'out/',file)
     # return file
@@ -449,6 +460,7 @@ def csv(file):
     return redirect(url_for('people',file=file))
 
 @app.route("/download/<file>")
+@cross_origin()
 def download(file):
     dir = ''
     inputfiles = os.listdir(app.config['UPLOAD_FOLDER'])
