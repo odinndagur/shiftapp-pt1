@@ -1,9 +1,7 @@
 flask
 pdfminer.six==20200517
 camelot
-flask.helpers
 numpy
 pandas
 requests
-werkzeug.utils
 gunicorn
