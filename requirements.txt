@@ -4,7 +4,6 @@ camelot
 flask.helpers
 numpy
 pandas
-json
 requests
 csv
 werkzeug.utils
