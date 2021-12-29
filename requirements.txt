@@ -1,5 +1,5 @@
 flask
-pdfminer.six 20200517
+pdfminer.six==20200517
 camelot
 flask.helpers
 numpy
