@@ -5,6 +5,5 @@ flask.helpers
 numpy
 pandas
 requests
-csv
 werkzeug.utils
 gunicorn
