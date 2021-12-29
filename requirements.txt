@@ -1,5 +1,4 @@
 flask
-flask-cors
 pdfminer.six==20200517
 camelot
 numpy
